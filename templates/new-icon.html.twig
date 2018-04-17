@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div>
+
+{{ form_start(icon_form) }}
+
+<div class="form-group">
+{{ form_label(icon_form.iconName) }}
+{{ form_widget(icon_form.iconName, {'attr': {'class' : 'form-control'} }) }}
+</div>
+
+<div class="form-group">
+{{ form_label(icon_form.iconImage) }}
+{{ form_widget(icon_form.iconImage, {'attr': {'class' : 'form-control'} }) }}
+</div>
+
+<div>
+{{ form_widget(icon_form.save, {'attr': {'class' : 'btn btn-primary'} }) }}
+</div>
+
+{{ form_end(icon_form) }}
+
+</div>
+{% endblock %}
