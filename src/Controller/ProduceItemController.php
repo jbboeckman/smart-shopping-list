@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProduceItemController extends BaseController {
 	/**
-	* @Route("/new-item")
+	* @Route("/new-item",name="items")
 	*/
 	public function new(Request $request) {
 		$item = new ProduceItem("", "", new \DateTime('today'));
@@ -22,11 +22,34 @@ class ProduceItemController extends BaseController {
 		
 		if($form->isSubmitted()) {
 			$item = $form->getData();
+			$entityManager = $this->getDoctrine()->getManager();
+			$entityManager->persist($item);
+			$entityManager->flush();
 			return new Response(
 				'<html><body>New item was added: ' . $item->getName() . ' rots on ' . $item->getExpirationDate()->format('Y-m-d') . '</body></html>'
 			);
 		}
 		
 		return $this->render('new-item.html.twig',['item_form' => $form->createView()]);
+	}
+	/**
+	* @Route("/items",name="item_list")
+	*/
+	public function list() {
+		$repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+		
+		$items = $repository->findAll();
+		
+		return $this->render('/lister-item.html.twig',['items' => $items]);
+	}
+	/**
+	* @Route("/items/{id}",name="get_item")
+	*/
+	public function getItems(int $id){
+		$repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+		
+		$items = $repository->find($id);
+		
+		return $this->render('lister-item.html.twig', ['items' => $item]);
 	}
 }

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Listing all items {% endblock %}
+
+{% block body %}
+
+<ul>
+
+{% for item in items %}
+	<li> {{item.name}} {{item.expirationDate}} {{item.icon}}</li>
+{% endfor %}
+
+</ul>
+
+{% endblock %}

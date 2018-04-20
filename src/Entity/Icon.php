@@ -2,8 +2,24 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+/**
+* @ORM\Entity
+*/
 class Icon {
+	/**
+	* @ORM\Id
+	* @ORM\GeneratedValue
+	* @ORM\Column(type="integer")
+	*/
+	private $id;
+	/**
+	* @ORM\Column(type="string", length=50)
+	*/
 	private $iconName;
+	/**
+	* @ORM\Column(type="string", length=50)
+	*/
 	private $iconImage;
 	
 	function __construct(string $iconName, $iconImage){

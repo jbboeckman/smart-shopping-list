@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IconController extends BaseController {
 	/**
-	* @Route("/new-icon")
+	* @Route("/new-icon",name="icons")
 	*/
 	public function new(Request $request) {
 		$icon = new Icon("", "");
@@ -31,11 +31,35 @@ class IconController extends BaseController {
 			
 			$icon->setIconImage($fileName);
 			//$icon = $form->getData();
+			$entityManager = $this->getDoctrine()->getManager();
+			$entityManager->persist($imageFile,$fileName);
+			$entityManager->flush();
+			
 			return new Response(
 				'<html><body>New icon was added: ' . $Icon->getIconName() . 
 				' file name: ' . $icon->getIconName() . 'img src=""/uploads/ . $icon->getIconImage() . ""/></body></html>'
 			);
 		}
 		return $this->render('new-icon.html.twig',['icon_form' => $form->createView()]);
+	}
+	/**
+	* @Route("/icons",name="icon_list")
+	*/
+	public function list() {
+		$repository = $this->getDoctrine()->getRepository(Icon::class);
+		
+		$icons = $repository->findAll();
+		
+		return $this->render('lister-icon.html.twig', ['icons' => $icons]);
+	}
+	/**
+	* @Route("/icons/{id}",name="get_icon")
+	*/
+	public function getIcon(int $id){
+		$repository = $this->getDoctrine()->getRepository(Icon::class);
+		
+		$icons = $repository->find($id);
+		
+		return $this->render('lister-icon.html.twig', ['icons' => $icons]);
 	}
 }

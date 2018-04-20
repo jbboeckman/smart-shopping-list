@@ -2,9 +2,28 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+/**
+* @ORM\Entity
+*/
 class ProduceItem {
+	/**
+	* @ORM\Id
+	* @ORM\GeneratedValue
+	* @ORM\Column(type="integer")
+	*/
+	private $id;
+	/**
+	* @ORM\Column(type="string", length=50)
+	*/
 	private $name;
+	/**
+	* @ORM\Column(type="string", length=50)
+	*/
 	private $icon;
+	/**
+	* @ORM\Column(type="datetime")
+	*/
 	private $expirationDate;
 	
 	function __construct(string $name, string $icon, \DateTime $expirationDate) {
