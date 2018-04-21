@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Listing all items {% endblock %}
+{% block title %} Listing all icons {% endblock %}
 
 {% block body %}
 
 <ul>
 
-{% for item in items %}
+{% for icon in icons %}
 	<li> {{icon.iconName}} {{icon.iconImage}} </li>
 {% endfor %}
 

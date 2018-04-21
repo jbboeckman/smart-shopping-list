@@ -23,7 +23,7 @@ class IconController extends BaseController {
 		if($form->isSubmitted()) {
 			$imageFile = $icon->getIconImage();
 			
-			$fileName = $icon->getId();
+			$fileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
 			
 			$rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
 			
@@ -43,7 +43,7 @@ class IconController extends BaseController {
 		return $this->render('new-icon.html.twig',['icon_form' => $form->createView()]);
 	}
 	/**
-	* @Route("/icons",name="icon_list")
+	* @Route("/lister-icon",name="icon_list")
 	*/
 	public function list() {
 		$repository = $this->getDoctrine()->getRepository(Icon::class);
