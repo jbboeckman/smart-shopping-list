@@ -22,15 +22,18 @@ class Icon {
 	*/
 	private $iconImage;
 	
-	function __construct(string $iconName, $iconImage){
+	function __construct($iconName, $iconImage){
 		$this->iconName = $iconName;
 		$this->iconImage = $iconImage;
 	}
+	public function getId() {
+		return $this->id;
+	}
 	
-	public function getIconName() : string{
+	public function getIconName() {
 		return $this->iconName;
 	}
-	public function setIconName(string $iconName){
+	public function setIconName($iconName){
 		$this->iconName = $iconName;
 	}
 	

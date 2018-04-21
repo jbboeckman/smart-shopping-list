@@ -23,7 +23,7 @@ class IconController extends BaseController {
 		if($form->isSubmitted()) {
 			$imageFile = $icon->getIconImage();
 			
-			$fileName = $icon->getIconName();
+			$fileName = $icon->getId();
 			
 			$rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
 			
@@ -32,11 +32,11 @@ class IconController extends BaseController {
 			$icon->setIconImage($fileName);
 			//$icon = $form->getData();
 			$entityManager = $this->getDoctrine()->getManager();
-			$entityManager->persist($imageFile,$fileName);
+			$entityManager->persist($icon);
 			$entityManager->flush();
 			
 			return new Response(
-				'<html><body>New icon was added: ' . $Icon->getIconName() . 
+				'<html><body>New icon was added: ' . $icon->getIconName() . 
 				' file name: ' . $icon->getIconName() . 'img src=""/uploads/ . $icon->getIconImage() . ""/></body></html>'
 			);
 		}

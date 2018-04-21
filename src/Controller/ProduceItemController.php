@@ -33,7 +33,7 @@ class ProduceItemController extends BaseController {
 		return $this->render('new-item.html.twig',['item_form' => $form->createView()]);
 	}
 	/**
-	* @Route("/items",name="item_list")
+	* @Route("/lister-item",name="item_list")
 	*/
 	public function list() {
 		$repository = $this->getDoctrine()->getRepository(ProduceItem::class);

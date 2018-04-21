@@ -7,7 +7,7 @@
 <ul>
 
 {% for item in items %}
-	<li> {{item.name}} {{item.expirationDate}} {{item.icon}}</li>
+	<li> {{item.name}} {{ item.expirationDate|date("m/d/Y") }} {{item.icon}}</li>
 {% endfor %}
 
 </ul>
