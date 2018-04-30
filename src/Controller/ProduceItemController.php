@@ -21,12 +21,18 @@ class ProduceItemController extends BaseController {
 		$form->handleRequest($request);
 		
 		if($form->isSubmitted()) {
-			$item = $form->getData();
-			$entityManager = $this->getDoctrine()->getManager();
-			$entityManager->persist($item);
-			$entityManager->flush();
+			
+			//var_dump($course->getIconName());
+			//die();
+			
+			$ProduceItem->addIcon($ProduceItem->getIcon()[0]);
+			
+				$item = $form->getData();
+				$entityManager = $this->getDoctrine()->getManager();
+				$entityManager->persist($item);
+				$entityManager->flush();
 			return new Response(
-				'<html><body>New item was added: ' . $item->getName() . ' rots on ' . $item->getExpirationDate()->format('Y-m-d') . '</body></html>'
+				'<html><body>New item was added: ' . $item->getName() . ' rots on ' . $item->getExpirationDate()->format('Y-m-d') . $item->getInShoppingList() . '</body></html>'
 			);
 		}
 		

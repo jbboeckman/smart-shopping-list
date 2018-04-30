@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass="App\Repository\itemRepository")
 */
 class ProduceItem {
 	/**
@@ -25,6 +25,10 @@ class ProduceItem {
 	* @ORM\Column(type="datetime")
 	*/
 	private $expirationDate;
+	/**
+	* @ORM\Column(type="boolean")
+	*/
+	private $inShoppingList;
 	
 	function __construct(string $name, string $icon, \DateTime $expirationDate) {
 		$this->name = $name;
@@ -45,11 +49,24 @@ class ProduceItem {
 	public function setIcon(string $icon){
 		$this->icon = $icon;
 	}
+		
+	public function addIcon(Icon $icon){
+		$this->icon[] = $icon;
+		$icon->addProduceItem($this);
+		return $this;
+	}
 	
 	public function getExpirationDate() : \DateTime{
 		return $this->expirationDate;
 	}
 	public function setExpirationDate(\DateTime $expirationDate = null){
 		$this->expirationDate = $expirationDate;
+	}
+	
+	public function getInShoppingList() : boolean {
+		return $this->inShoppingList;
+	}
+	public function setInShoppingList(){
+		$this->inShoppingList = $inShoppingList;
 	}
 }

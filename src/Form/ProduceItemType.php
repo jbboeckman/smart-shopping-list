@@ -9,6 +9,7 @@ use App\Entity\ProduceItem;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProduceItemType extends AbstractType {
 	
@@ -16,7 +17,10 @@ class ProduceItemType extends AbstractType {
 		
 		$builder
 		->add('name', TextType::class)
-		->add('icon', TextType::class)
+		->add('icon', TextType::class, [
+			'class' => Icon::class,
+			'choice_label' => 'iconName'
+		])
 		->add('expirationDate', DateType::class)
 		->add('save', SubmitType::class, ['label' => 'Create new item']);
 	}
