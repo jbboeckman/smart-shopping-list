@@ -8,18 +8,18 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class itemRepository extends ServiceEntityRepository {
 	public function __construct(RegistryInterface $registry) {
-		parent::__construct($registry, itemRepository::class);
+		parent::__construct($registry, ProduceItem::class);
 	}
 	public function getShoppingListItems() {
 		return $this->getEntityManager()
 			->createQuery('SELECT ProduceItem FROM App\Entity\ProduceItem ProduceItem WHERE ProduceItem.inShoppingList = :inShoppingList')
-			->setParameter('inShoppingList', 'FALSE')
+			->setParameter('inShoppingList',true)
 			->getResult();
 	}
 	public function getRegrigeratorItems() {
 		return $this->getEntityManager()
 			->createQuery('SELECT ProduceItem FROM App\Entity\ProduceItem ProduceItem WHERE ProduceItem.inShoppingList = :inShoppingList')
-			->setParameter('inShoppingList', 'TRUE')
+			->setParameter('inShoppingList',false)
 			->getResult();
 	}
 }

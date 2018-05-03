@@ -1,0 +1,7 @@
+fos_user:
+    db_driver: orm
+    user_class: App\Entity\
+    firewall_name: main
+    from_email:
+        address: info@smart_shopping
+        sender_name: "your refreigeratr"

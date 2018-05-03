@@ -9,7 +9,7 @@ use App\Form\ProduceItemType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProduceItemController extends BaseController {
+class ShoppingListController extends BaseController {
 	/**
 	* @Route("/new-item",name="items")
 	*/
@@ -28,12 +28,12 @@ class ProduceItemController extends BaseController {
 			$item->addIcon($item->getIcon()[0]);
 			
 				$item = $form->getData();
-				$item->setInShoppingList(false);
+				$item->setInShoppingList(true);
 				$entityManager = $this->getDoctrine()->getManager();
 				$entityManager->persist($item);
 				$entityManager->flush();
 			return new Response(
-				'<html><body>New item was added: ' . $item->getName() . ' rots on ' . $item->getExpirationDate()->format('Y-m-d') . $item->getInShoppingList() . '</body></html>'
+				'<html><body>New item was added: ' . $item->getName() . ' rots on ' . /*$item->getExpirationDate()->format('Y-m-d') .*/ $item->getInShoppingList() . '</body></html>'
 			);
 		}
 		

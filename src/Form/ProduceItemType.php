@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\ProduceItem;
+use App\Entity\Icon;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,7 +18,7 @@ class ProduceItemType extends AbstractType {
 		
 		$builder
 		->add('name', TextType::class)
-		->add('icon', TextType::class, [
+		->add('icon', EntityType::class, [
 			'class' => Icon::class,
 			'choice_label' => 'iconName'
 		])
