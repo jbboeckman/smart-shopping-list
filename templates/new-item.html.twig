@@ -9,7 +9,9 @@
 	<a href="lister-icon">Icon List</a>
 </div>
 
-<div>
+<div id="alert-div"></div>
+
+<div class="mt-5">
 
 {{ form_start(item_form) }}
 
@@ -29,10 +31,18 @@
 </div>
 
 <div>
-{{ form_widget(item_form.save, {'attr': {'class' : 'btn btn-primary'} }) }}
+{{ form_widget(item_form.save, {'attr': {'class' : 'btn btn-primary'}, 'Label': label }) }}
 </div>
 
 {{ form_end(item_form) }}
-
 </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+
+</script>
 {% endblock %}

@@ -36,6 +36,10 @@ class ProduceItem {
 		$this->expirationDate = $expirationDate;
 	}
 	
+	public function getId() : string {
+		return $this->id;
+	}
+	
 	public function getName() : string {
 		return $this->name;
 	}
@@ -63,10 +67,10 @@ class ProduceItem {
 		$this->expirationDate = $expirationDate;
 	}
 	
-	public function getInShoppingList() : boolean {
+	public function getInShoppingList() : bool {
 		return $this->inShoppingList;
 	}
-	public function setInShoppingList(){
+	public function setInShoppingList($inShoppingList){
 		$this->inShoppingList = $inShoppingList;
 	}
 }

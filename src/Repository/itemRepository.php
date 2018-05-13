@@ -16,7 +16,7 @@ class itemRepository extends ServiceEntityRepository {
 			->setParameter('inShoppingList',true)
 			->getResult();
 	}
-	public function getRegrigeratorItems() {
+	public function getRefrigeratorItems() {
 		return $this->getEntityManager()
 			->createQuery('SELECT ProduceItem FROM App\Entity\ProduceItem ProduceItem WHERE ProduceItem.inShoppingList = :inShoppingList')
 			->setParameter('inShoppingList',false)
