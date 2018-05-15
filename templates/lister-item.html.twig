@@ -14,7 +14,7 @@
 <ul class="nt=5">
 
 {% for item in items %}
-	<li> {{item.name}} {{ item.expirationDate|date("m/d/Y") }} {{item.icon}}
+	<li> {{item.name}} {{ item.expirationDate|date("m/d/Y") }}
 		<a href="{{ path('ajax_edit_item', { id: item.id})}}">
 			<i class="fas fa-edit"></i>
 		</a>
@@ -36,14 +36,14 @@
 {{ parent() }}
 <script>
 $(document).ready(function() {
-	$('ul li span').clickfunction(e) {
+	$('ul li span').click(function(e) {
 		let produceItem_id = $(this).attr('id');
 		
 		$.ajax({
 			url: $(this).data('url'),
 			method: 'DELETE'
 		}).done(function(){
-			$('#'+produceItem_id+"=lister-item").hide();
+			$('#'+produceItem_id).hide();
 		})
 	})
 });

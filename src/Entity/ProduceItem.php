@@ -18,7 +18,7 @@ class ProduceItem {
 	*/
 	private $name;
 	/**
-	* @ORM\Column(type="string", length=50)
+	* @ORM\OneToOne(targetEntity="Icon")
 	*/
 	private $icon;
 	/**
@@ -47,18 +47,14 @@ class ProduceItem {
 		$this->name = $name;
 	}
 	
-	public function getIcon() : string {
+	public function getIcon(){
 		return $this->icon;
 	}
-	public function setIcon(string $icon){
+	public function setIcon($icon){
 		$this->icon = $icon;
 	}
-		
-	public function addIcon(Icon $icon){
-		$this->icon[] = $icon;
-		$icon->addProduceItem($this);
-		return $this;
-	}
+	
+	//public function addIcon(Icon $icon){$this->icon[] = $icon;$icon->addProduceItem($this);return $this;}
 	
 	public function getExpirationDate() : \DateTime{
 		return $this->expirationDate;
